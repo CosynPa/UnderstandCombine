@@ -54,6 +54,6 @@ struct MapPublisher2<Upstream: Publisher, Output>: Publisher {
 
     func receive<S>(subscriber: S) where S : Subscriber, Self.Failure == S.Failure, Output == S.Input {
         let mapSubscriber = MapSubscriber2(downstream: subscriber, transform: transform)
-        upstream.receive(subscriber: mapSubscriber)
+        upstream.subscribe(mapSubscriber)
     }
 }
